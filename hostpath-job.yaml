@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Job
+metadata:
+  name: hostpath-job
+  labels:
+    app: hostpath-job
+spec:
+  containers:
+  - name: hostpathjob
+    image: quay.io/coffeepac/hostpath-job:latest
+    volumeMounts:
+    - mountPath: /etc-on-disk
+      name: etc-on-disk
+  volumes:
+  - name: etc-on-disk
+    hostpath:
+      path: /etc
